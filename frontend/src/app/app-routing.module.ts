@@ -19,11 +19,15 @@ const routes: Routes = [
     component: WorkComponent
   },
   {
-    path: "/work/add",
+    path: "work/add",
     component: AddWorkComponent
   },
   {
     path: "worker",
+    component: WorkerComponent
+  },
+  {
+    path: "worker/free",
     component: WorkerComponent
   },
   {
@@ -32,6 +36,10 @@ const routes: Routes = [
   },
   {
     path: "machine",
+    component: MachineComponent
+  },
+  {
+    path: "machine/free",
     component: MachineComponent
   },
   {

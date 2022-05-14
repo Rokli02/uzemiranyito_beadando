@@ -76,13 +76,7 @@ export class WorkerController extends Controller {
                 return this.errorHandler(res, 404, "Couldn't find work with such id!");
             }
 
-            for(const wrk of worker.works) {
-                if(wrk.id == work.id) {
-                    return this.errorHandler(res, 400, "Worker is already working on this work!");
-                }
-            }
-
-            let workerWorks = [...worker.works, work]
+            let workerWorks = worker.works.filter(value => value.id !== work.id);
 
             await this.repository.update(id, {
                 works: workerWorks

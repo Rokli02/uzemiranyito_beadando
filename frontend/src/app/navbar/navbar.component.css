@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: #5F7161;
+  color: azure;
+  padding: 10px 15px;
+  box-shadow: 4px 4px 8px #D0C9C0;
+}
+
+.nav-item > button{
+  font-size: 20px;
+}

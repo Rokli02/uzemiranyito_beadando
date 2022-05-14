@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorkComponent } from './work/work.component';
@@ -12,6 +15,12 @@ import { AddWorkComponent } from './work/add-work/add-work.component';
 import { AddWorkerComponent } from './worker/add-worker/add-worker.component';
 import { AddMachineComponent } from './machine/add-machine/add-machine.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatInputModule } from "@angular/material/input"
+import { MatSelectModule } from "@angular/material/select"
 
 @NgModule({
   declarations: [
@@ -28,7 +37,15 @@ import { AddTaskComponent } from './task/add-task/add-task.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,4 +12,7 @@ export class AddWorkComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addWork() {
+
+  }
 }

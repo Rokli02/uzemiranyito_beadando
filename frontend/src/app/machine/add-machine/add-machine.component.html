@@ -1,1 +1,14 @@
-<p>add-machine works!</p>
+<div class="container">
+  <h1>Gép hozzáadás</h1>
+  <form action="" (ngSubmit)="addMachine()">
+    <mat-form-field class="text-input">
+      <mat-label>Megnevezés</mat-label>
+      <input type="text" matInput maxlength="256"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Maximálisan elvégezhető feladatok száma</mat-label>
+      <input type="number" matInput/>
+    </mat-form-field><br>
+    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+  </form>
+</div>

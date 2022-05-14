@@ -46,7 +46,7 @@ export class TaskController extends Controller {
             return this.errorHandler(res, 400, "Id parameter must be a number!");
         }
 
-        const workId = parseInt(req.query.taskId);
+        const workId = parseInt(req.query.workId);
         if(isNaN(workId)) {
             return this.errorHandler(res, 400, "Query parameter must be a number!");
         }
@@ -80,7 +80,7 @@ export class TaskController extends Controller {
             return this.errorHandler(res, 400, "Id parameter must be a number!");
         }
 
-        const workId = parseInt(req.query.taskId);
+        const workId = parseInt(req.query.workId);
         if(isNaN(workId)) {
             return this.errorHandler(res, 400, "Query parameter must be a number!");
         }

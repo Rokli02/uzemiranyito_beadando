@@ -1,1 +1,23 @@
-<p>add-work works!</p>
+<div class="container">
+  <h1>Munka hozzáadás</h1>
+  <form method="dialog" (ngSubmit)="addWork()">
+    <mat-form-field class="text-input">
+      <mat-label>Megnevezés</mat-label>
+      <input type="text" matInput maxlength="256"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Dolgozók</mat-label>
+      <mat-select multiple>
+        <mat-option value="">Sanyika</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Feladatok</mat-label>
+      <mat-select multiple>
+        <mat-option value="">Vakolás</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+  </form>
+</div>

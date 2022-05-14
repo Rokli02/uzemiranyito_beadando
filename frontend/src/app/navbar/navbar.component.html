@@ -1,1 +1,34 @@
-<p>navbar works!</p>
+<div class="navbar">
+  <span class="nav-item">
+    <button mat-button [matMenuTriggerFor]="worker">Munkások</button>
+    <mat-menu #worker="matMenu">
+      <button mat-menu-item routerLink="worker">Lista</button>
+      <button mat-menu-item routerLink="worker/free">Szabad munkások</button>
+      <button mat-menu-item routerLink="worker/add">Hozzáadás</button>
+    </mat-menu>
+  </span>
+  <span class="nav-item">
+    <button mat-button [matMenuTriggerFor]="work">Munka</button>
+    <mat-menu #work="matMenu">
+      <button mat-menu-item routerLink="work">Lista</button>
+      <button mat-menu-item routerLink="work/add">Hozzáadás</button>
+    </mat-menu>
+  </span>
+  <span class="nav-item">
+    <button mat-button [matMenuTriggerFor]="task">Feladat</button>
+    <mat-menu #task="matMenu">
+      <button mat-menu-item routerLink="task">Lista</button>
+      <button mat-menu-item routerLink="task/add">Hozzáadás</button>
+      <button mat-menu-item>Gép megváltoztatás</button>
+      <button mat-menu-item>Munka hozzáadás</button>
+    </mat-menu>
+  </span>
+  <span class="nav-item">
+    <button mat-button [matMenuTriggerFor]="machine">Gépek</button>
+    <mat-menu #machine="matMenu">
+      <button mat-menu-item routerLink="machine">Lista</button>
+      <button mat-menu-item routerLink="machine/free">Szabad gépek</button>
+      <button mat-menu-item routerLink="machine/add">Hozzáadás</button>
+    </mat-menu>
+  </span>
+</div>

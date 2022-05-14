@@ -12,4 +12,8 @@ export class AddMachineComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  addMachine() {
+
+  }
 }

@@ -1,1 +1,39 @@
-<p>machine works!</p>
+<div class="list-container">
+  <div class="list-item">
+    <div class="item-header">
+      <span class="item-column">1</span>
+      <span class="item-column">-</span>
+      <span class="item-column">CNC esztergáló</span>
+      <button class="delete-button" mat-raised-button color="warn">Törlés</button>
+      <hr>
+    </div>
+    <div class="item-body">
+      <div class="item-column">
+        <span class="item-column">Elvégezhető feladatok maximuma:</span>
+        <span class="item-column">10</span>
+      </div>
+      <div class="item-column">
+        <div>
+          <span class="item-column">A gép kihasználtsága:</span>
+          <span class="item-column">64 %</span>
+        </div>
+        <div style="text-align: center;">
+          <button mat-raised-button class="occup-button">%-os használtság</button>
+        </div>
+      </div>
+      <hr>
+      <div class="expansion-container">
+        <mat-expansion-panel hideToggle class="expansion-panel">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="expansion-title ">
+              Feladatok
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p class="expansion-item">Csavar faragás</p>
+          <p class="expansion-item">Szög faragás</p>
+          <p class="expansion-item">Csapágy marás</p>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+</div>

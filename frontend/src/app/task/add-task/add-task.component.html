@@ -1,1 +1,24 @@
-<p>add-task works!</p>
+<div class="container">
+  <h1>Feladat hozzáadás</h1>
+  <form action="" (ngSubmit)="addTask()">
+    <mat-form-field class="text-input">
+      <mat-label>Megnevezés</mat-label>
+      <input type="text" matInput maxlength="256"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Gép</mat-label>
+      <mat-select>
+        <mat-option value="">Érték</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Munka</mat-label>
+      <mat-select>
+        <mat-option value="">-</mat-option>
+        <mat-option value="">Komoly munlka</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+.container {
+  margin: 35px auto;
+  width: 85%;
+}
+
+.content {
+  background-color: #EFEAD8;
+  min-height: 100%
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    margin: 20px auto;
+    width: 95%;
+  }
+}

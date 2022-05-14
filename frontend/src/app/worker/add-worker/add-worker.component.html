@@ -1,1 +1,31 @@
-<p>add-worker works!</p>
+<div class="container">
+  <h1>Dolgozó hozzáadás</h1>
+  <form action="" (ngSubmit)="addWorker()">
+    <mat-form-field class="text-input">
+      <mat-label>Neve</mat-label>
+      <input type="text" matInput maxlength="256"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Képzetség</mat-label>
+      <input type="text" matInput maxlength="256"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Fizetés</mat-label>
+      <input type="number" matInput min="0"/>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Státusz</mat-label>
+      <mat-select>
+        <mat-option value="">Foglalt</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Munka</mat-label>
+      <mat-select multiple>
+        <mat-option value="">Komoly munlka</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+  </form>
+</div>
