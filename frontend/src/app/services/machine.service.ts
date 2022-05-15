@@ -7,15 +7,15 @@ import { Machine } from '../models/Machine';
   providedIn: 'root'
 })
 export class MachineService {
-  baseUrl = "http://localhost:5000/api/machine";
+  private baseUrl = "http://localhost:5000/api/machine";
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return lastValueFrom(this.http.get(this.baseUrl));
+    return lastValueFrom(this.http.get<Machine[]>(this.baseUrl));
   }
 
   save(machine: Machine) {
-    return lastValueFrom(this.http.post(this.baseUrl, machine))
+    return lastValueFrom(this.http.post<Machine>(this.baseUrl, machine))
   }
 
   delete(id: number) {
@@ -23,10 +23,10 @@ export class MachineService {
   }
 
   getAllFree() {
-    return lastValueFrom(this.http.get(`${this.baseUrl}/free`));
+    return lastValueFrom(this.http.get<Machine[]>(`${this.baseUrl}/free`));
   }
 
   getOneOccupancy(id: number) {
-    return lastValueFrom(this.http.get(`${this.baseUrl}/occupancy/${id}`));
+    return lastValueFrom(this.http.get<number>(`${this.baseUrl}/occupancy/${id}`));
   }
 }

@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddMachineComponent } from './machine/add-machine/add-machine.component';
 import { MachineComponent } from './machine/machine.component';
+import { AddMachineToTaskComponent } from './task/add-machine-to-task/add-machine-to-task.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
+import { AddWorkToTaskComponent } from './task/add-work-to-task/add-work-to-task.component';
 import { TaskComponent } from './task/task.component';
 import { AddWorkComponent } from './work/add-work/add-work.component';
 import { WorkComponent } from './work/work.component';
 import { AddWorkerComponent } from './worker/add-worker/add-worker.component';
+import { HandleWorkComponent } from './worker/handle-work/handle-work.component';
 import { WorkerComponent } from './worker/worker.component';
 
 const routes: Routes = [
@@ -35,6 +38,18 @@ const routes: Routes = [
     component: AddWorkerComponent
   },
   {
+    path: "worker/add/:id",
+    component: AddWorkerComponent
+  },
+  {
+    path: "worker/work/add",
+    component: HandleWorkComponent
+  },
+  {
+    path: "worker/work/delete",
+    component: HandleWorkComponent
+  },
+  {
     path: "machine",
     component: MachineComponent
   },
@@ -53,6 +68,14 @@ const routes: Routes = [
   {
     path: "task/add",
     component: AddTaskComponent
+  },
+  {
+    path: "task/machine",
+    component: AddMachineToTaskComponent
+  },
+  {
+    path: "task/work",
+    component: AddWorkToTaskComponent
   }
 ];
 

@@ -7,15 +7,15 @@ import { Work } from '../models/Work';
   providedIn: 'root'
 })
 export class WorkService {
-  baseUrl = "http://localhost:5000/api/work";
+  private baseUrl = "http://localhost:5000/api/work";
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return lastValueFrom(this.http.get(this.baseUrl));
+    return lastValueFrom(this.http.get<Work[]>(this.baseUrl));
   }
 
   save(work: Work) {
-    return lastValueFrom(this.http.post(this.baseUrl, work))
+    return lastValueFrom(this.http.post<Work>(this.baseUrl, work))
   }
 
   delete(id: number) {

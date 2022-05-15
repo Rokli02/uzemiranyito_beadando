@@ -7,23 +7,27 @@ import { Worker } from '../models/Worker';
   providedIn: 'root'
 })
 export class WorkerService {
-  baseUrl = "http://localhost:5000/api/worker";
+  private baseUrl = "http://localhost:5000/api/worker";
   constructor(private http: HttpClient) { }
 
+  getOne(id: number) {
+    return lastValueFrom(this.http.get<Worker>(`${this.baseUrl}/${id}`));
+  }
+
   getAll() {
-    return lastValueFrom(this.http.get(this.baseUrl));
+    return lastValueFrom(this.http.get<Worker[]>(this.baseUrl));
   }
 
   getAllFree() {
-    return lastValueFrom(this.http.get(`${this.baseUrl}/free`));
+    return lastValueFrom(this.http.get<Worker[]>(`${this.baseUrl}/free`));
   }
 
   save(worker: Worker) {
-    return lastValueFrom(this.http.post(`${this.baseUrl}`, worker));
+    return lastValueFrom(this.http.post<Worker>(`${this.baseUrl}`, worker));
   }
 
   update(worker: Worker, id: number) {
-    return lastValueFrom(this.http.post(`${this.baseUrl}/${id}`, worker));
+    return lastValueFrom(this.http.put(`${this.baseUrl}/${id}`, worker));
   }
 
   delete(id: number) {

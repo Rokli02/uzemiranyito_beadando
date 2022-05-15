@@ -1,39 +1,47 @@
 <div class="list-container">
-  <div class="list-item">
+  <div class="list-item" *ngFor="let machine of machines">
     <div class="item-header">
-      <span class="item-column">1</span>
+      <span class="item-column">{{machine.id}}</span>
       <span class="item-column">-</span>
-      <span class="item-column">CNC esztergáló</span>
-      <button class="delete-button" mat-raised-button color="warn">Törlés</button>
+      <span class="item-column">{{machine.type}}</span>
+      <button class="delete-button" mat-raised-button color="warn" (click)="deleteMachine(machine.id)">Törlés</button>
       <hr>
     </div>
     <div class="item-body">
       <div class="item-column">
         <span class="item-column">Elvégezhető feladatok maximuma:</span>
-        <span class="item-column">10</span>
+        <span class="item-column">{{machine.maxNumOfTasks}}</span>
       </div>
       <div class="item-column">
-        <div>
+        <div *ngIf="machineOccup.has(machine.id); else noOccupancy">
           <span class="item-column">A gép kihasználtsága:</span>
-          <span class="item-column">64 %</span>
+          <span class="item-column">{{machineOccup.get(machine.id)}} %</span>
         </div>
-        <div style="text-align: center;">
-          <button mat-raised-button class="occup-button">%-os használtság</button>
-        </div>
+        <ng-template #noOccupancy>
+          <div style="text-align: center;">
+            <button mat-raised-button class="occup-button" (click)="getOccupancy(machine.id)">%-os használtság</button>
+          </div>
+        </ng-template>
       </div>
-      <hr>
-      <div class="expansion-container">
-        <mat-expansion-panel hideToggle class="expansion-panel">
-          <mat-expansion-panel-header>
-            <mat-panel-title class="expansion-title ">
-              Feladatok
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <p class="expansion-item">Csavar faragás</p>
-          <p class="expansion-item">Szög faragás</p>
-          <p class="expansion-item">Csapágy marás</p>
-        </mat-expansion-panel>
+      <div *ngIf="machine.tasks.length > 0">
+        <hr>
+        <div class="expansion-container">
+          <mat-expansion-panel hideToggle class="expansion-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="expansion-title ">
+                Feladatok
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="expansion-item" *ngFor="let task of machine.tasks">{{task.id}} - {{task.name}}</p>
+          </mat-expansion-panel>
+        </div>
       </div>
     </div>
+  </div>
+  <div  class="list-item" *ngIf="machines.length < 1 && errorMsg">
+    <h1>{{errorMsg}}</h1>
+  </div>
+  <div  class="list-item" *ngIf="machines.length < 1 && !errorMsg">
+    <h1>Nincs gép az adatbázisban!</h1>
   </div>
 </div>

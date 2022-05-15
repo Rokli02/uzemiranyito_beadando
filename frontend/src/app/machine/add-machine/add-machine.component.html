@@ -1,14 +1,17 @@
 <div class="container">
   <h1>Gép hozzáadás</h1>
-  <form action="" (ngSubmit)="addMachine()">
+  <form [formGroup]="mform" (ngSubmit)="addMachine()">
     <mat-form-field class="text-input">
       <mat-label>Megnevezés</mat-label>
-      <input type="text" matInput maxlength="256"/>
+      <input type="text" matInput maxlength="256" formControlName="type" #type/>
+      <mat-hint align="end">{{type.value.length}}/{{type.maxLength}}</mat-hint>
+      <mat-error>Kötelező megadni a gép megnevezését!</mat-error>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Maximálisan elvégezhető feladatok száma</mat-label>
-      <input type="number" matInput/>
+      <input type="number" min="1" matInput formControlName="maxNumOfTasks"/>
+      <mat-error>A feladatot számát kötelező megadni és 1-nek, vagy nagyobb számnak kell lennie!</mat-error>
     </mat-form-field><br>
-    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!mform.valid">Hozzáadás</button>
   </form>
 </div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Munka feladathoz rendelése</h1>
+  <form (ngSubmit)="addWorkToTask()" [formGroup]="aform">
+    <mat-form-field class="text-input">
+      <mat-label>Munka</mat-label>
+      <mat-select formControlName="work">
+        <mat-option [value]="work.id" *ngFor="let work of works">{{work.id}} - {{work.name}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező munkát kiválasztani!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Feladat</mat-label>
+      <mat-select formControlName="task">
+        <mat-option [value]="task.id" *ngFor="let task of tasks">{{task.id}} - {{task.name}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező feladatot kiválasztani!</mat-error>
+    </mat-form-field>
+    <div>
+      <button class="add-button" mat-raised-button color="primary" [disabled]="!aform.valid">Párosít</button>
+    </div>
+  </form>
+</div>

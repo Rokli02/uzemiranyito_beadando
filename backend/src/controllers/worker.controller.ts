@@ -97,4 +97,29 @@ export class WorkerController extends Controller {
             return this.errorHandler(res, 500, err);
         }
     }
+
+    update = async (req, res) => {
+        const id = parseInt(req.params.id);
+        if(isNaN(id)) {
+            return this.errorHandler(res, 400, "Id parameter must be a number!");
+        }
+        
+        const entity = this.repository.create(req.body as Worker);
+        entity.id = id;
+        if(entity.status === Status.FREE && entity.works.length > 0) {
+            entity.status = Status.WORKING
+        }
+        console.log(id,entity)
+        try {
+            const entityOfDb = await this.repository.findOne(id);
+            if(!entityOfDb) {
+                return this.errorHandler(res, 404, "Entity not found!")
+            }
+
+            const entityAdded = await this.repository.save(entity);
+            res.status(200).json(entityAdded);
+        } catch (err) {
+            return this.errorHandler(res, 500, err);
+        }
+    }
 }

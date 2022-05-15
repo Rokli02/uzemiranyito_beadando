@@ -1,31 +1,36 @@
 <div class="container">
-  <h1>Dolgozó hozzáadás</h1>
-  <form action="" (ngSubmit)="addWorker()">
+  <h1>Dolgozó {{title}}</h1>
+  <form [formGroup]="wform" (ngSubmit)="addWorker()">
     <mat-form-field class="text-input">
       <mat-label>Neve</mat-label>
-      <input type="text" matInput maxlength="256"/>
+      <input type="text" matInput maxlength="256" #name formControlName="name"/>
+      <mat-hint align="end">{{name.value.length}}/{{name.maxLength}}</mat-hint>
+      <mat-error>A név megadása kötelező!</mat-error>
     </mat-form-field>
     <mat-form-field class="text-input">
-      <mat-label>Képzetség</mat-label>
-      <input type="text" matInput maxlength="256"/>
+      <mat-label>Képzettség</mat-label>
+      <input type="text" matInput maxlength="256" #qual formControlName="qualification"/>
+      <mat-hint align="end">{{qual.value.length}}/{{qual.maxLength}}</mat-hint>
+      <mat-error>A képzettség megadása kötelező!</mat-error>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Fizetés</mat-label>
-      <input type="number" matInput min="0"/>
+      <input type="number" matInput min="0" formControlName="salary"/>
+      <mat-error>A fizetés megadása kötelező és 0, vagy annál nagyobb számnak kell lennie!</mat-error>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Státusz</mat-label>
-      <mat-select>
-        <mat-option value="">Foglalt</mat-option>
+      <mat-select formControlName="status">
+        <mat-option [value]="stat" *ngFor="let stat of statuses">{{stat}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="text-input">
+    <mat-form-field class="text-input" *ngIf='wform.get("status")!.value === "Working"'>
       <mat-label>Munka</mat-label>
-      <mat-select multiple>
-        <mat-option value="">Komoly munlka</mat-option>
+      <mat-select multiple formControlName="works">
+        <mat-option [value]="work" *ngFor="let work of works">{{work.id}} - {{work.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!wform.valid">{{buttonText}}</button>
   </form>
 </div>

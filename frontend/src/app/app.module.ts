@@ -20,7 +20,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from "@angular/material/input"
-import { MatSelectModule } from "@angular/material/select"
+import { MatSelectModule } from "@angular/material/select";
+import { HandleWorkComponent } from './worker/handle-work/handle-work.component';
+import { AddMachineToTaskComponent } from './task/add-machine-to-task/add-machine-to-task.component';
+import { AddWorkToTaskComponent } from './task/add-work-to-task/add-work-to-task.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { MatSelectModule } from "@angular/material/select"
     AddWorkComponent,
     AddWorkerComponent,
     AddMachineComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    HandleWorkComponent,
+    AddMachineToTaskComponent,
+    AddWorkToTaskComponent
   ],
   imports: [
     BrowserModule,

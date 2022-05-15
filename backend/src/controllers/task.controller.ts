@@ -9,7 +9,16 @@ export class TaskController extends Controller {
     machineRepository = getRepository(Machine);
     workRepository = getRepository(Work);
 
-    changeMachine = async (req, res) => {
+    getAll = async (req, res) => {
+        try {
+            const entities = await this.repository.find({relations: ["machine","work"]});
+            res.json(entities);
+        } catch (err) {
+            return this.errorHandler(res, 500, err);
+        }
+    }
+
+    addMachine = async (req, res) => {
         const id = parseInt(req.params.id);
         if(isNaN(id)) {
             return this.errorHandler(res, 400, "Id parameter must be a number!");
@@ -33,6 +42,27 @@ export class TaskController extends Controller {
 
             await this.repository.update(id, {
                 machine: machine
+            })
+            res.json({message: "Machine is added to the task!"});
+        } catch(err) {
+            return this.errorHandler(res, 500, err);
+        }
+    }
+
+    deleteMachine = async (req, res) => {
+        const id = parseInt(req.params.id);
+        if(isNaN(id)) {
+            return this.errorHandler(res, 400, "Id parameter must be a number!");
+        }
+
+        try {
+            const task = await this.repository.findOne(id);
+            if(!task) {
+                return this.errorHandler(res, 404, "Task not found!")
+            }
+
+            await this.repository.update(id, {
+                machine: null
             })
             res.json({message: "Machine is added to the task!"});
         } catch(err) {
@@ -80,18 +110,10 @@ export class TaskController extends Controller {
             return this.errorHandler(res, 400, "Id parameter must be a number!");
         }
 
-        const workId = parseInt(req.query.workId);
-        if(isNaN(workId)) {
-            return this.errorHandler(res, 400, "Query parameter must be a number!");
-        }
-
         try {
             const task = await this.repository.findOne(id);
             if(!task) {
                 return this.errorHandler(res, 404, "Work not found!")
-            }
-            if(!task.work) {
-                return this.errorHandler(res, 400, "Task doesn't have a work!")
             }
 
             await this.repository.update(id, {

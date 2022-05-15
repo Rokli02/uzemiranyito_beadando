@@ -4,7 +4,7 @@ import { Work } from "./Work";
 export enum Status {
     WORKING = "Working",
     FREE = 'Free',
-    ON_LEAVE ="On_leave"
+    ON_LEAVE ="On leave"
 }
 
 @Entity()

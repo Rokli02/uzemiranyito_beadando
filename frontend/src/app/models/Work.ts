@@ -1,3 +1,4 @@
+import { Task } from "./Task";
 import { Worker } from "./Worker";
 
 export interface Work {

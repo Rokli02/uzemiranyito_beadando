@@ -5,6 +5,8 @@
       <button mat-menu-item routerLink="worker">Lista</button>
       <button mat-menu-item routerLink="worker/free">Szabad munkások</button>
       <button mat-menu-item routerLink="worker/add">Hozzáadás</button>
+      <button mat-menu-item routerLink="worker/work/add">Munkához hozzárendelés</button>
+      <button mat-menu-item routerLink="worker/work/delete">Munkából kivétel</button>
     </mat-menu>
   </span>
   <span class="nav-item">
@@ -19,8 +21,8 @@
     <mat-menu #task="matMenu">
       <button mat-menu-item routerLink="task">Lista</button>
       <button mat-menu-item routerLink="task/add">Hozzáadás</button>
-      <button mat-menu-item>Gép megváltoztatás</button>
-      <button mat-menu-item>Munka hozzáadás</button>
+      <button mat-menu-item routerLink="task/machine">Gép hozzáadás</button>
+      <button mat-menu-item routerLink="task/work">Munka hozzáadás</button>
     </mat-menu>
   </span>
   <span class="nav-item">

@@ -3,7 +3,7 @@ import { MachineController } from "./controllers/machine.controller";
 import { TaskController } from "./controllers/task.controller";
 import { WorkController } from "./controllers/work.controller";
 import { WorkerController } from "./controllers/worker.controller";
-import { addMachineValidator, addTaskValidator, addWorkerValidator, addWorkValidator } from "./validator";
+import { addMachineValidator, addTaskValidator, addWorkerValidator, addWorkValidator, updateWorkerValidator } from "./validator";
 
 export function getRoutes() {
     const router = express.Router();
@@ -15,7 +15,8 @@ export function getRoutes() {
     const taskController = new TaskController();
     router.get("/api/task", taskController.getAll);
     router.post("/api/task", addTaskValidator, taskController.create);
-    router.put("/api/task/machine/change/:id", taskController.changeMachine);
+    router.put("/api/task/machine/add/:id", taskController.addMachine);
+    router.put("/api/task/machine/delete/:id", taskController.deleteMachine);
     router.put("/api/task/work/add/:id", taskController.addWork);
     router.put("/api/task/work/delete/:id", taskController.deleteWork);
     router.delete("/api/task/:id", taskController.delete);
@@ -32,8 +33,9 @@ export function getRoutes() {
     const workerController = new WorkerController();
     router.get("/api/worker", workerController.getAll);
     router.get("/api/worker/free", workerController.getAllFree)
+    router.get("/api/worker/:id", workerController.getOne);
     router.post("/api/worker", addWorkerValidator, workerController.create);
-    router.put("/api/worker/:id", addWorkerValidator, workerController.update);
+    router.put("/api/worker/:id", updateWorkerValidator, workerController.update);
     router.put("/api/worker/addWork/:id", workerController.addWork);
     router.put("/api/worker/deleteWork/:id", workerController.deleteWork);
     router.delete("/api/worker/:id", workerController.delete);

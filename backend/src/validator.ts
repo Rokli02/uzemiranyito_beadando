@@ -17,9 +17,9 @@ export function addTaskValidator(req, res, next) {
         return errorHandler(res, 400, "Name is required!");
     }
 
-    if(!req.body.machine) {
+    /*if(!req.body.machine) {
         return errorHandler(res, 400, "A machine must be given!");
-    }
+    }*/
 
     next();
 }
@@ -53,25 +53,48 @@ export function addWorkerValidator(req, res, next) {
         return errorHandler(res, 400, "Not valid status is given!");
     }
 
-    if(!freeStatus && req.body.works.length > 1) {
+    if(!workingStatus(req.body.status) && req.body.works.length > 1) {
         return errorHandler(res, 400, "Can't add person to work!");
     }
 
     next();
 }
 
-function validStatus(status : Status | string) {
-    for(const stat in Status) {
-        if(stat === status)
-            return true;
-        console.log("Stat in for:",stat);
-        console.log("Status from param:",status);
+export function updateWorkerValidator(req, res, next) {
+    if(!req.body.name) {
+        return errorHandler(res, 400, "Name is required!");
     }
-    return false;
+    
+    if(!req.body.qualification) {
+        return errorHandler(res, 400, "Qualification is required!");
+    }
+    
+    if(isNaN(req.body.salary) || req.body.salary < 0) {
+        return errorHandler(res, 400, "Salary must be a number and at least 0!");
+    }
+
+    if(!validStatus(req.body.status)) {
+        return errorHandler(res, 400, "Not valid status is given!");
+    }
+
+    if(onLeaveStatus(req.body.status) && req.body.works.length > 1) {
+        return errorHandler(res, 400, "Can't add person to work!");
+    }
+
+    next();
 }
 
-function freeStatus(status : Status | string) {
-    return status === Status.FREE;
+function validStatus(status : string) {
+    console.log(status);
+    return Object.values(Status).filter(value => value === status).length > 0;
+}
+
+function onLeaveStatus(status : Status | string) {
+    return status === Status.ON_LEAVE;
+}
+
+function workingStatus(status : Status | string) {
+    return status === Status.WORKING;
 }
 
 function errorHandler(res, status = 500, message : any = 'Server error!') {

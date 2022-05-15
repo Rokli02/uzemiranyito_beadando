@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Feladat géphez rendelése</h1>
+  <form (ngSubmit)="addMachineToTask()" [formGroup]="aform">
+    <mat-form-field class="text-input">
+      <mat-label>Feladat</mat-label>
+      <mat-select formControlName="task">
+        <mat-option [value]="task.id" *ngFor="let task of tasks">{{task.id}} - {{task.name}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező feladatot kiválasztani!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Gép</mat-label>
+      <mat-select formControlName="machine">
+        <mat-option [value]="machine.id" *ngFor="let machine of machines">{{machine.id}} - {{machine.type}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező gépet kiválasztani!</mat-error>
+    </mat-form-field>
+    <div>
+      <button class="add-button" mat-raised-button color="primary" [disabled]="!aform.valid">Párosít</button>
+    </div>
+  </form>
+</div>

@@ -1,24 +1,27 @@
 <div class="container">
   <h1>Feladat hozzáadás</h1>
-  <form action="" (ngSubmit)="addTask()">
+  <form [formGroup]="tform" (ngSubmit)="addTask()">
     <mat-form-field class="text-input">
       <mat-label>Megnevezés</mat-label>
-      <input type="text" matInput maxlength="256"/>
+      <input type="text" matInput maxlength="256" #name formControlName="name"/>
+      <mat-hint align="end">{{name.value.length}}/{{name.maxLength}}</mat-hint>
+      <mat-error>A feladat megnevezésének megadása kötelező!</mat-error>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Gép</mat-label>
-      <mat-select>
-        <mat-option value="">Érték</mat-option>
+      <mat-select formControlName="machine">
+        <mat-option value="null">-</mat-option>
+        <mat-option [value]="machine" *ngFor="let machine of machines">{{machine.id}} - {{machine.type}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Munka</mat-label>
-      <mat-select>
-        <mat-option value="">-</mat-option>
-        <mat-option value="">Komoly munlka</mat-option>
+      <mat-select formControlName="work">
+        <mat-option value="null">-</mat-option>
+        <mat-option [value]="work" *ngFor="let work of works">{{work.id}} - {{work.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+    <button mat-raised-button color="primary" type="submit" >Hozzáadás</button>
   </form>
 </div>

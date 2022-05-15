@@ -12,5 +12,5 @@ export interface Worker {
 export enum Status {
   WORKING = "Working",
   FREE = 'Free',
-  ON_LEAVE ="On_leave"
+  ON_LEAVE ="On leave"
 }

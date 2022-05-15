@@ -11,12 +11,14 @@ export class Task {
     name: string;
 
     @ManyToOne(type => Machine, machine => machine.tasks, {
-        onDelete: "CASCADE"
+        onDelete: "CASCADE",
+        nullable: true
     })
     machine: Machine;
 
     @ManyToOne(type => Work, work => work.tasks, {
-        nullable: true
+        nullable: true,
+        deferrable: "INITIALLY DEFERRED"
     })
     work: Work;
 }

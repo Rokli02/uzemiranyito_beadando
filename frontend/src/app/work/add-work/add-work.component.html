@@ -1,23 +1,24 @@
 <div class="container">
   <h1>Munka hozzáadás</h1>
-  <form method="dialog" (ngSubmit)="addWork()">
+  <form [formGroup]="wform" (ngSubmit)="addWork()">
     <mat-form-field class="text-input">
       <mat-label>Megnevezés</mat-label>
-      <input type="text" matInput maxlength="256"/>
+      <input type="text" matInput maxlength="256" #name formControlName="name"/>
+      <mat-hint align="end">{{name.value.length}}/{{name.maxLength}}</mat-hint>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Dolgozók</mat-label>
-      <mat-select multiple>
-        <mat-option value="">Sanyika</mat-option>
+      <mat-select multiple formControlName="workers">
+        <mat-option [value]="worker" *ngFor="let worker of workers">{{worker.id}} - {{worker.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Feladatok</mat-label>
-      <mat-select multiple>
-        <mat-option value="">Vakolás</mat-option>
+      <mat-select multiple formControlName="tasks">
+        <mat-option [value]="task" *ngFor="let task of tasks">{{task.id}} - {{task.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" type="submit">Hozzáadás</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!wform.valid">Hozzáadás</button>
   </form>
 </div>
