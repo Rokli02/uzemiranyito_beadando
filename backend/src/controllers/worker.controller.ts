@@ -105,7 +105,7 @@ export class WorkerController extends Controller {
         if(entity.status === Status.FREE && entity.works.length > 0) {
             entity.status = Status.WORKING
         }
-        console.log(id,entity)
+        
         try {
             const entityOfDb = await this.repository.findOne(id);
             if(!entityOfDb) {
