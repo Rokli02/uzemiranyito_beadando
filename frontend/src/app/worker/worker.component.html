@@ -31,7 +31,10 @@
                 Munkák
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <p class="expansion-item" *ngFor="let work of worker.works">{{work.id}} - {{work.name}}</p>
+            <div class="expansion-item" *ngFor="let work of worker.works">
+              {{work.id}} - {{work.name}}
+              <button mat-stroked-button color="warn" (click)="deleteWorkFromWorker(worker.id, work.id)">Kivonás</button>
+            </div>
           </mat-expansion-panel>
         </div>
       </div>

@@ -23,14 +23,14 @@ export class WorkerController extends Controller {
             if(!worker) {
                 return this.errorHandler(res, 404, "Couldn't find worker with such id!");
             }
-
-            if(worker.status !== Status.FREE) {
-                return this.errorHandler(res, 400, "The worker is not free currently!")
-            }
-
+            
             const work = await this.workRepository.findOne(workId);
             if(!work) {
                 return this.errorHandler(res, 404, "Couldn't find work with such id!");
+            }
+
+            if(worker.status !== Status.FREE) {
+                return this.errorHandler(res, 400, "The worker is not free currently!")
             }
 
             for(const wrk of worker.works) {
@@ -39,11 +39,10 @@ export class WorkerController extends Controller {
                 }
             }
 
-            let workerWorks = [...worker.works, work]
+            worker.works = [...worker.works, work];
+            worker.status = Status.WORKING;
 
-            await this.repository.update(id, {
-                works: workerWorks
-            });
+            await this.repository.save(worker);
             res.json({message: "New work is added to the worker!"});
         } catch(err) {
             return this.errorHandler(res, 500, err);
@@ -67,21 +66,18 @@ export class WorkerController extends Controller {
                 return this.errorHandler(res, 404, "Couldn't find worker with such id!");
             }
 
-            if(worker.status !== Status.FREE) {
-                return this.errorHandler(res, 400, "The worker is not free currently!")
-            }
-
             const work = await this.workRepository.findOne(workId);
             if(!work) {
                 return this.errorHandler(res, 404, "Couldn't find work with such id!");
             }
 
-            let workerWorks = worker.works.filter(value => value.id !== work.id);
+            worker.works = worker.works.filter(value => value.id !== work.id);
+            if(worker.works.length < 1) {
+                worker.status = Status.FREE;
+            }
 
-            await this.repository.update(id, {
-                works: workerWorks
-            });
-            res.json({message: "New work is added to the worker!"});
+            await this.repository.save(worker);
+            res.json({message: "Work id deleted from the worker!"});
         } catch(err) {
             return this.errorHandler(res, 500, err);
         }

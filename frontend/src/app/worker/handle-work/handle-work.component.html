@@ -1,1 +1,22 @@
-<p>handle-work works!</p>
+<div class="container">
+  <h1>Dolgozó munkához hozzárendelése</h1>
+  <form [formGroup]="wform" (ngSubmit)="addWorkToWorker()">
+    <mat-form-field class="text-input">
+      <mat-label>Munka</mat-label>
+      <mat-select formControlName="work">
+        <mat-option [value]="work.id" *ngFor="let work of works">{{work.id}} - {{work.name}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező munkát kiválasztani!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="text-input">
+      <mat-label>Munkás</mat-label>
+      <mat-select formControlName="worker">
+        <mat-option [value]="worker.id" *ngFor="let worker of workers">{{worker.id}} - {{worker.name}}</mat-option>
+      </mat-select>
+      <mat-error>Kötelező munkást kiválasztani!</mat-error>
+    </mat-form-field>
+    <div>
+      <button class="add-button" mat-raised-button color="primary" [disabled]="!wform.valid">Párosít</button>
+    </div>
+  </form>
+</div>

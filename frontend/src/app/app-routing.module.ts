@@ -42,11 +42,7 @@ const routes: Routes = [
     component: AddWorkerComponent
   },
   {
-    path: "worker/work/add",
-    component: HandleWorkComponent
-  },
-  {
-    path: "worker/work/delete",
+    path: "worker/work",
     component: HandleWorkComponent
   },
   {

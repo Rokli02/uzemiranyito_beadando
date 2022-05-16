@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Worker } from '../models/Worker';
+import { Status, Worker } from '../models/Worker';
 import { WorkerService } from '../services/worker.service';
 
 @Component({
@@ -65,5 +65,24 @@ export class WorkerComponent implements OnInit {
 
   updateWorker(id: number) {
     this.router.navigate(["worker","add", id]);
+  }
+
+  async deleteWorkFromWorker(workerId: number, workId: number) {
+    try {
+      const response : any = await this.workerService.deleteWork(workerId, workId);
+      this.workers = this.workers.map(value => {
+        if(value.id === workerId) {
+          value.works = value.works.filter(work => work.id !== workId);
+          if(value.works.length < 1) {
+            value.status = Status.FREE;
+          }
+        }
+        return value;
+      });
+      alert(response.message);
+    } catch(err) {
+      console.log(err);
+      alert((err as HttpErrorResponse).error);
+    }
   }
 }

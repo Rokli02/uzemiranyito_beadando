@@ -10,14 +10,14 @@
     <mat-form-field class="text-input">
       <mat-label>Gép</mat-label>
       <mat-select formControlName="machine">
-        <mat-option value="null">-</mat-option>
+        <mat-option>-</mat-option>
         <mat-option [value]="machine" *ngFor="let machine of machines">{{machine.id}} - {{machine.type}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="text-input">
       <mat-label>Munka</mat-label>
       <mat-select formControlName="work">
-        <mat-option value="null">-</mat-option>
+        <mat-option>-</mat-option>
         <mat-option [value]="work" *ngFor="let work of works">{{work.id}} - {{work.name}}</mat-option>
       </mat-select>
     </mat-form-field>
